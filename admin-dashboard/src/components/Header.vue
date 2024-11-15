@@ -1,21 +1,24 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Admin Panel</a>
-        <div class="d-flex">
-          <button class="btn btn-outline-light" type="button">Profile</button>
-        </div>
-      </div>
-    </nav>
-  </template>
-  
-  <script>
-  export default {
-    name: "Header",
-  };
-  </script>
-  
-  <style scoped>
-  /* Các style riêng cho Header nếu cần */
-  </style>
-  
+  <nav class="navbar navbar-dark bg-primary shadow px-4">
+    <a class="navbar-brand text-white" href="#">Admin Dashboard</a>
+    <div>
+      <button class="btn btn-light btn-sm">Profile</button>
+    </div>
+  </nav>
+</template>
+
+<script>
+export default {
+  name: 'Header',
+};
+</script>
+
+<style scoped>
+/* Header styling */
+.navbar {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+</style>

@@ -3,7 +3,7 @@ import Layout from '../components/Layout.vue';
 import Products from '../components/ProductManage.vue';
 import Users from '../components/UserManage.vue';
 import Orders from '../components/OrderManage.vue';
-// import Statistics from '../components/Statistics.vue';
+import Dashboard from '../components/Dashboard.vue';
 
 const routes = [
   {
@@ -22,11 +22,11 @@ const routes = [
       {
         path: '/orders',
         component: Orders,
+      },
+      {
+        path: '/dashboard',
+        component: Dashboard,
       }
-    //   {
-    //     path: '/statistics',
-    //     component: Statistics,
-    //   }
     ]
   }
 ];

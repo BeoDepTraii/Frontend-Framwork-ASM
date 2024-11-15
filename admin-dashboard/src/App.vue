@@ -1,10 +1,12 @@
 <template>
-  <router-view /> <!-- Chỉ cần router-view ở đây -->
+  <div id="app" class="d-flex flex-column">
+    <router-view />
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: "App",
 };
 </script>
 
