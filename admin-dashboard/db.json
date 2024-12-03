@@ -144,13 +144,13 @@
       }
     },
     {
-      "id": "3",
       "user_id": 3,
       "product_id": 3,
       "status": "canceled",
       "total": 100,
       "quantity": 100,
       "payment_method": "online",
+      "id": "3",
       "created_at": "2024-09-15T15:00",
       "updated_at": "2024-11-15T11:28:40.389Z",
       "user": {
@@ -200,6 +200,17 @@
         "description": "Sản phẩm 1",
         "status": "active"
       }
+    },
+    {
+      "id": "5",
+      "user_id": 1,
+      "product_id": 1,
+      "status": "pending",
+      "total": 10,
+      "quantity": 10,
+      "payment_method": "online",
+      "created_at": "2024-11-17T08:32:04.947Z",
+      "updated_at": "2024-11-17T08:32:04.947Z"
     }
   ]
 }
