@@ -26,13 +26,13 @@
         <tr v-for="order in orders" :key="order.id">
           <td>{{ order.id }}</td>
           <td>{{ order.user?.name || "Unknown Customer" }}</td>
-          <td>{{ order.product?.name || "Unknown Product" }}</td>
+          <td><span class="ellipsis" :title="order.product?.name">{{ order.product?.name || "Unknown Product" }}</span></td>
           <td>
             <span :class="['status-badge', getStatusClass(order.status)]">{{
               order.status
             }}</span>
           </td>
-          <td>{{ order.total }}</td>
+          <td>{{ formatPrice(order.total) }}</td>
           <td>{{ order.quantity }}</td>
           <td>{{ order.payment_method }}</td>
           <td>{{ formatDate(order.created_at) }}</td>
@@ -162,7 +162,14 @@ const notyf = new Notyf({
   position: { x: "right", y: "top" },
   duration: 3000,
 });
-
+const formatPrice = (price) => {
+  if (typeof price !== "number") {
+    price = Number(price);
+  }
+  return price
+    .toLocaleString("vi-VN", { style: "currency", currency: "VND" })
+    .replace("₫", " VND");
+};
 export default {
   setup() {
     const orders = ref([]);
@@ -281,12 +288,35 @@ export default {
     };
 
     const validateForm = () => {
-      if (!form.user_id || !form.product_id || !form.total || !form.quantity) {
-        notyf.error("All fields are required.");
-        return false;
-      }
-      return true;
-    };
+  let isValid = true;
+
+  // Kiểm tra trường user_id
+  if (!form.user_id) {
+    notyf.error("User ID is required.");
+    return isValid = false;
+  }
+
+  // Kiểm tra trường product_id
+  if (!form.product_id) {
+    notyf.error("Product ID is required.");
+    return isValid = false;
+  }
+
+  // Kiểm tra trường total
+  if (!form.total || form.total <= 0) {
+    notyf.error("Total amount must be greater than 0.");
+    return isValid = false;
+  }
+
+  // Kiểm tra trường quantity
+  if (!form.quantity || form.quantity <= 0) {
+    notyf.error("Quantity must be greater than 0.");
+    return isValid = false;
+  }
+
+  return isValid;
+};
+
 
     const getNextId = () => {
       return orders.value.length > 0
@@ -348,6 +378,7 @@ export default {
       closeModal,
       formatDate,
       getStatusClass,
+      formatPrice
     };
   },
 };
@@ -408,5 +439,13 @@ export default {
 
 .btnDele {
   margin-left: 0.3em;
+}
+
+.ellipsis {
+  white-space: nowrap; /* Không xuống dòng */
+  overflow: hidden; /* Cắt nội dung nếu quá dài */
+  text-overflow: ellipsis; /* Thêm dấu "..." */
+  max-width: 180px; /* Chiều rộng tối đa, điều chỉnh theo ý bạn */
+  display: block; /* Đảm bảo hiệu ứng áp dụng cho phần tử khối */
 }
 </style>

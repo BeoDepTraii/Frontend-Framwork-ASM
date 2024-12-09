@@ -30,10 +30,16 @@
               style="width: 50px; height: auto"
             />
           </td>
-          <td>{{ product.name }}</td>
-          <td>{{ product.price }}</td>
+          <td><span class="ellipsis" :title="product.name">
+              {{ product.name }}
+            </span></td>
+          <td>{{ formatPrice(product.price) }}</td>
           <td>{{ product.quantity }}</td>
-          <td>{{ product.description }}</td>
+          <td>
+            <span class="ellipsis" :title="product.description">
+              {{ product.description }}
+            </span>
+          </td>
           <td class="text-center">
             <span :class="['status-badge', getStatusClass(product.status)]">{{
               product.status
@@ -175,7 +181,14 @@ const notyf = new Notyf({
   position: { x: "right", y: "top" },
   duration: 3000,
 });
-
+const formatPrice = (price) => {
+  if (typeof price !== "number") {
+    price = Number(price);
+  }
+  return price
+    .toLocaleString("vi-VN", { style: "currency", currency: "VND" })
+    .replace("₫", " VND");
+};
 export default {
   setup() {
     const products = ref([]);
@@ -262,18 +275,41 @@ export default {
     };
 
     const validateForm = () => {
-      if (
-        !form.img ||
-        !form.name ||
-        !form.price ||
-        !form.quantity ||
-        !form.description
-      ) {
-        notyf.error("All fields are required.");
-        return false;
-      }
-      return true;
-    };
+  let isValid = true;
+
+  // Kiểm tra trường img
+  if (!form.img) {
+    notyf.error("Image URL cannot be empty.");
+    return isValid = false;
+  }
+
+  // Kiểm tra trường name
+  if (!form.name) {
+    notyf.error("Product Name cannot be empty.");
+    return isValid = false;
+  }
+
+  // Kiểm tra trường price
+  if (!form.price || form.price <= 0) {
+    notyf.error("Product Price cannot be empty and must be greater than 0.");
+    return isValid = false;
+  }
+
+  // Kiểm tra trường quantity
+  if (!form.quantity || form.quantity <= 0) {
+    notyf.error("Quantity cannot be empty and must be greater than 0.");
+    return isValid = false;
+  }
+
+  // Kiểm tra trường description
+  if (!form.description) {
+    notyf.error("Description cannot be empty.");
+    return isValid = false;
+  }
+
+  return isValid;
+};
+
 
     const getNextId = () => {
       return products.value.length > 0
@@ -330,6 +366,7 @@ export default {
       handleSubmit,
       closeModal,
       getStatusClass,
+      formatPrice,
     };
   },
 };
@@ -390,5 +427,13 @@ export default {
 
 .btnDele {
   margin-left: 0.3em;
+}
+
+.ellipsis {
+  white-space: nowrap; /* Không xuống dòng */
+  overflow: hidden; /* Cắt nội dung nếu quá dài */
+  text-overflow: ellipsis; /* Thêm dấu "..." */
+  max-width: 200px; /* Chiều rộng tối đa, điều chỉnh theo ý bạn */
+  display: block; /* Đảm bảo hiệu ứng áp dụng cho phần tử khối */
 }
 </style>
