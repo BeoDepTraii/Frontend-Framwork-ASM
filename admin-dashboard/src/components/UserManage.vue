@@ -78,19 +78,25 @@
       <!-- Select for Role -->
       <div class="mb-3">
         <label for="user-role" class="form-label">Role</label>
+        <div class="select-wrapper">
         <select id="user-role" v-model="form.role" class="form-control">
           <option value="admin">Admin</option>
           <option value="user">User</option>
         </select>
+        <span class="dropdown-icon">▼</span>
+      </div>
       </div>
       
       <!-- Select for Status -->
       <div class="mb-3">
         <label for="user-status" class="form-label">Status</label>
+        <div class="select-wrapper">
         <select id="user-status" v-model="form.status" class="form-control">
           <option value="active">Active</option>
           <option value="inactive">Inactive</option>
         </select>
+        <span class="dropdown-icon">▼</span>
+      </div>
       </div>
       
       <!-- Buttons -->

@@ -113,7 +113,8 @@
           "quantity": "1000",
           "description": "Máy mới 100% , chính hãng Apple Việt Nam.",
           "status": "active"
-        },{
+        },
+        {
           "id": "1",
           "img": "https://cdn.tgdd.vn/Products/Images/42/329143/iphone-16-pro-titan-sa-mac.png",
           "name": "iPhone 16 Pro Max 256GB | Chính hãng VN/A",
@@ -213,14 +214,32 @@
     },
     {
       "id": "5",
-      "user_id": 1,
-      "product_id": 2,
+      "user_id": "3",
+      "product_id": "1",
       "status": "completed",
       "total": 10,
       "quantity": 10,
       "payment_method": "online",
-      "created_at": "2024-12-05T08:36:34.185Z",
-      "updated_at": "2024-12-05T08:36:34.185Z"
+      "created_at": "2024-12-09T19:04:06.195Z",
+      "updated_at": "2024-12-09T19:04:31.933Z",
+      "user": {
+        "id": "3",
+        "img": "https://cdn.tgdd.vn/Products/Images/42/329143/iphone-16-pro-titan-sa-mac.png",
+        "name": "Nguyễn Văn C",
+        "email": "nguyenc@example.com",
+        "phone": "0913634651",
+        "role": "admin",
+        "status": "inactive"
+      },
+      "product": {
+        "id": "1",
+        "img": "https://cdn.tgdd.vn/Products/Images/42/329143/iphone-16-pro-titan-sa-mac.png",
+        "name": "iPhone 16 Pro Max 256GB | Chính hãng VN/A",
+        "price": 33990000,
+        "quantity": "1000",
+        "description": "Máy mới 100% , chính hãng Apple Việt Nam.",
+        "status": "active"
+      }
     }
   ]
 }

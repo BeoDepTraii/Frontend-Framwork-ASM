@@ -30,9 +30,11 @@
               style="width: 50px; height: auto"
             />
           </td>
-          <td><span class="ellipsis" :title="product.name">
+          <td>
+            <span class="ellipsis" :title="product.name">
               {{ product.name }}
-            </span></td>
+            </span>
+          </td>
           <td>{{ formatPrice(product.price) }}</td>
           <td>{{ product.quantity }}</td>
           <td>
@@ -145,17 +147,19 @@
           <!-- Status -->
           <div class="mb-3">
             <label for="product-status" class="form-label">Status</label>
-            <select
-              id="product-status"
-              v-model="form.status"
-              class="form-control"
-            >
-              <option value="active">Active</option>
-              <option value="out_of_stock">Out of Stock</option>
-              <option value="inactive">Inactive</option>
-            </select>
+            <div class="select-wrapper">
+              <select
+                id="product-status"
+                v-model="form.status"
+                class="form-control"
+              >
+                <option value="active">Active</option>
+                <option value="out_of_stock">Out of Stock</option>
+                <option value="inactive">Inactive</option>
+              </select>
+              <span class="dropdown-icon">▼</span>
+            </div>
           </div>
-
           <!-- Buttons -->
           <div class="modal-buttons">
             <button type="submit" class="btn btn-primary">
@@ -275,41 +279,42 @@ export default {
     };
 
     const validateForm = () => {
-  let isValid = true;
+      let isValid = true;
 
-  // Kiểm tra trường img
-  if (!form.img) {
-    notyf.error("Image URL cannot be empty.");
-    return isValid = false;
-  }
+      // Kiểm tra trường img
+      if (!form.img) {
+        notyf.error("Image URL cannot be empty.");
+        return (isValid = false);
+      }
 
-  // Kiểm tra trường name
-  if (!form.name) {
-    notyf.error("Product Name cannot be empty.");
-    return isValid = false;
-  }
+      // Kiểm tra trường name
+      if (!form.name) {
+        notyf.error("Product Name cannot be empty.");
+        return (isValid = false);
+      }
 
-  // Kiểm tra trường price
-  if (!form.price || form.price <= 0) {
-    notyf.error("Product Price cannot be empty and must be greater than 0.");
-    return isValid = false;
-  }
+      // Kiểm tra trường price
+      if (!form.price || form.price <= 0) {
+        notyf.error(
+          "Product Price cannot be empty and must be greater than 0."
+        );
+        return (isValid = false);
+      }
 
-  // Kiểm tra trường quantity
-  if (!form.quantity || form.quantity <= 0) {
-    notyf.error("Quantity cannot be empty and must be greater than 0.");
-    return isValid = false;
-  }
+      // Kiểm tra trường quantity
+      if (!form.quantity || form.quantity <= 0) {
+        notyf.error("Quantity cannot be empty and must be greater than 0.");
+        return (isValid = false);
+      }
 
-  // Kiểm tra trường description
-  if (!form.description) {
-    notyf.error("Description cannot be empty.");
-    return isValid = false;
-  }
+      // Kiểm tra trường description
+      if (!form.description) {
+        notyf.error("Description cannot be empty.");
+        return (isValid = false);
+      }
 
-  return isValid;
-};
-
+      return isValid;
+    };
 
     const getNextId = () => {
       return products.value.length > 0

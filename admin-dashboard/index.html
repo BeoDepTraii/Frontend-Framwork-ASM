@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,6 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Panel</title>
   </head>
+  <style>
+    /* Style cho thẻ select */
+    .select-wrapper {
+      position: relative;
+    }
+
+    /* Thêm biểu tượng mũi tên xuống */
+    .select-wrapper .dropdown-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      pointer-events: none;
+      color: #818181;
+    }
+
+    /* Thêm khoảng cách phải cho thẻ select */
+    .select-wrapper select {
+      padding-right: 30px; /* Để không bị che khuất bởi biểu tượng mũi tên */
+    }
+  </style>
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
